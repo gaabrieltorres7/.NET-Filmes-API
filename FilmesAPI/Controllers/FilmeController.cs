@@ -10,8 +10,6 @@ using Microsoft.EntityFrameworkCore;
 namespace FilmesAPI.Controllers
 {
 
-
-
     [ApiController]
     [Route("[controller]")]
     public class FilmeController : ControllerBase
@@ -34,7 +32,6 @@ namespace FilmesAPI.Controllers
             return CreatedAtAction(nameof(RecuperaFilmePorId),
              new { id = filme.Id },
              filme);
-
         }
 
         [HttpGet]
@@ -71,21 +68,20 @@ namespace FilmesAPI.Controllers
             var filme = _context.Filmes.FirstOrDefault(filme => filme.Id == id);
             if (filme == null) return NotFound();
 
-            var filmeParaAtualizar = _mapper.Map<UpdateFilmeDto>(filme);
+            var filmeParaAtualizar = _mapper.Map<UpdateFilmeDto>(filme); // transforma o filme em updateFilmeDto
 
-            patch.ApplyTo(filmeParaAtualizar, ModelState);
+            patch.ApplyTo(filmeParaAtualizar, ModelState); // aplica o patch no filmeDto
 
-            if (!TryValidateModel(filmeParaAtualizar))
+            if (!TryValidateModel(filmeParaAtualizar)) // valida o filmeDto
             {
                 return ValidationProblem(ModelState);
             }
-            _mapper.Map(filmeParaAtualizar, filme);
+            _mapper.Map(filmeParaAtualizar, filme); // transforma o filmeDto em um filme
             _context.SaveChanges();
             return NoContent();
         }
 
         [HttpDelete("{id}/delete")]
-        
         public IActionResult DeletaFilme(int id)
         {
             var filme = _context.Filmes.FirstOrDefault(
