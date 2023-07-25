@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using FilmesApi.Data.Dtos;
-using FilmesAPI.DTOs;
+using FilmesAPI.Data.DTOs;
 using FilmesAPI.Models;
 
 namespace FilmesApi.Profiles;

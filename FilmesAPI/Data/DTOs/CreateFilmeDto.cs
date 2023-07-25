@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace FilmesAPI.DTOs
+namespace FilmesAPI.Data.DTOs
 {
     public class CreateFilmeDto
     {
