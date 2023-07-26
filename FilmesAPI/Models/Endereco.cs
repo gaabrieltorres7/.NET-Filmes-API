@@ -10,5 +10,6 @@ namespace FilmesAPI.Models
     [Required(ErrorMessage = "O logradouro é obrigatório")]
     public string Logradouro { get; set; }
     public int Numero { get; set; }
+    public virtual Cinema Cinema { get; set; }
   }
 }
