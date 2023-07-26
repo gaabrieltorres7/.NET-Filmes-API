@@ -6,6 +6,8 @@ using AutoMapper;
 
 namespace FilmesAPI.Controllers
 {
+  [ApiController]
+  [Route("[controller]")]
   public class EnderecoController : ControllerBase
   {
     private FilmeContext _context;
