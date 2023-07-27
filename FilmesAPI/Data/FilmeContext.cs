@@ -20,6 +20,11 @@ namespace FilmesApi.Data
           .WithMany(cinema => cinema.Sessoes).HasForeignKey(sessao => sessao.CinemaId);
       modelBuilder.Entity<Sessao>().HasOne(sessao => sessao.Filme)
           .WithMany(filme => filme.Sessoes).HasForeignKey(sessao => sessao.FilmeId);
+      
+      modelBuilder.Entity<Endereco>() //não permite que ocorra a deleção em cascata
+          .HasOne(endereco => endereco.Cinema)
+          .WithOne(cinema => cinema.Endereco)
+          .OnDelete(DeleteBehavior.Restrict);
     }
 
     public DbSet<Filme> Filmes { get; set; }
